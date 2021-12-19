@@ -1,0 +1,19 @@
+% Пакеты для графики
+\usepackage{graphicx}
+\graphicspath{{content/images/}}
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{wrapfig}
+\usepackage{caption}
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ --- }
+\captionsetup{justification=centering,labelsep=defffis}
+\captionsetup[figure]{name=Рисунок}
+
+% Быстрые картиночки
+\newcommand{\pic}[4]{
+\begin{figure}[H]
+\center{\includegraphics[width=#3cm]{#1}}
+\caption{#2}
+\label{#4}
+\end{figure}
+}

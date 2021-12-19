@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{article}
+\pretolerance10000
+
+% Гостовский шрифт
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+% Костыль для титула с белой точкой
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+
+\usepackage{lscape}
+
+\usepackage{courier}
+\usepackage{listings}
+
+% ссылочки через тире
+\usepackage{cite}
+
+% Абзацный отступ 1.25 см
+\usepackage{setspace}
+\setlength {\parindent} {12.5mm}
+
+% Колонтитулы
+\usepackage{fancyhdr}[nocheck]
+\fancyhead{}
+\fancyfoot[C]{\thepage}
+
+% Полуторный интервал текста
+\onehalfspacing
+
+% ГОСТ отступы документа
+\usepackage[left=30mm, top=20mm, right=15mm, bottom=20mm]{geometry}
+
+%\usepackage[left=20mm, top=30mm, right=20mm, bottom=15mm]{geometry}
+
+\usepackage{indentfirst}
+\usepackage{misccorr}
+\usepackage{amsmath}
+\usepackage{enumitem} % списочки
+\usepackage{float} % шоб не уплывало
+
+% Заголовки структурных элементов
+\usepackage{titlesec}
+
+\titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}
+{\thesection}{1em}{}
+\titleformat{\subsection}[block]{\normalfont\fontsize{14}{14}\bfseries}
+{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{\normalfont\fontsize{14}{14}\bfseries}
+{\thesubsubsection}{1em}{}
+
+\titlespacing{\section}{\parindent}{1.5mm}{1.5mm}
+\titlespacing{\subsection}{\parindent}{1.5mm}{1.5mm}
+\titlespacing{\subsubsection}{\parindent}{1.5mm}{1.5mm}
+
+\makeatletter
+\renewcommand{\l@part}{\@dottedtocline{0}{0em}{2.6em}}
+\renewcommand{\l@section}{\@dottedtocline{1}{1.25em}{1.25em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{2.5em}{1.75em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3.75em}{2.6em}}
+\makeatother
+\makeatletter
+\def\@biblabel#1{#1. }
+
+% Новая глава с новой страницы
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+% Заголовки структурных разделов
+% \StructHeader{Введение}
+\usepackage{textcase} % \MakeTextUppercase{}
+\newcommand{\StructHeader}[1]{
+\begin{center}
+\addcontentsline{toc}{part}{#1}
+\textbf{\MakeTextUppercase{#1}}
+\end{center}
+}
+
+\newcounter{applications}[page]
+\newcommand{\application}[1]{
+\newpage
+\refstepcounter{applications}
+\begin{center}
+\addcontentsline{toc}{part}{Приложение \realAsbuk{applications} #1}
+\textbf{ПРИЛОЖЕНИЕ \realAsbuk{applications}}\\
+\textbf{#1}
+\end{center}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand\thefigure{\realAsbuk{applications}.\arabic{figure}}
+\renewcommand\thetable{\realAsbuk{applications}.\arabic{table}}
+}
+
+% Списочки
+\input{source/macros/lists}
+
+% Вставка кода
+\lstset{basicstyle=\tttfamily,breaklines=true}
+\newcommand{\code}[1]{\texttt{#1}} \makeatother
+
+\newcommand{\matan}[2]{
+\begin{equation}
+#1
+\label{#2}
+\end{equation}
+}
+
+\usepackage{listings}
+\usepackage{supertabular}
+
+\input{source/macros/graphic}
